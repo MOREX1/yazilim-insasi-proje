@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Boğaz Turu - Adrenalin</title>
+    <link href="https://fonts.googleapis.com/css2?family=Oswald:wght@700&family=Roboto&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <style>
+        /* ثيم أحمر وأسود */
+        :root { --primary: #ff0000; --bg: #000000; --text: #ffffff; }
+        body { background-color: var(--bg); color: var(--text); margin: 0; font-family: 'Roboto', sans-serif; }
+        
+        /* زر العودة */
+        .back-btn { position: absolute; top: 20px; left: 20px; color: white; text-decoration: none; font-size: 1.2rem; z-index: 100; display: flex; align-items: center; gap: 10px; }
+        .back-btn:hover { color: var(--primary); }
+
+        /* Hero للصورة */
+        .page-hero {
+            height: 60vh;
+            background: linear-gradient(to bottom, transparent, #000000), url('https://thumbs.dreamstime.com/b/istanbul-city-skyline-cityscape-time-lapse-day-to-night-view-bosphorus-bridge-financial-business-center-aerial-th-july-420591439.jpg');
+            background-size: cover; background-position: center;
+            display: flex; align-items: flex-end; padding-bottom: 50px; justify-content: center;
+        }
+        
+        .page-hero h1 { font-family: 'Oswald'; font-size: 4rem; color: var(--primary); text-shadow: 0 0 20px red; text-transform: uppercase; margin: 0; }
+
+        /* التفاصيل */
+        .content { max-width: 800px; margin: 0 auto; padding: 40px 20px; text-align: center; }
+        .desc { font-size: 1.2rem; line-height: 1.8; color: #ccc; margin-bottom: 40px; }
+        
+        .features { display: flex; justify-content: space-around; flex-wrap: wrap; gap: 20px; margin-bottom: 50px; }
+        .feat-box { background: #111; padding: 20px; border: 1px solid #333; border-radius: 10px; width: 150px; }
+        .feat-box i { font-size: 2rem; color: var(--primary); margin-bottom: 10px; }
+        
+        /* زر الواتساب */
+        .whatsapp-btn {
+            background: var(--primary); color: white; text-decoration: none; padding: 15px 40px; font-size: 1.2rem;
+            font-weight: bold; border-radius: 50px; box-shadow: 0 0 20px rgba(255,0,0,0.4); display: inline-block; transition: 0.3s;
+        }
+        .whatsapp-btn:hover { background: #cc0000; transform: scale(1.05); }
+
+        @media (max-width: 768px) { .page-hero h1 { font-size: 2.5rem; } }
+    </style>
+</head>
+<body>
+    <a href="index.html" class="back-btn"><i class="fas fa-arrow-left"></i> Geri Dön</a>
+
+    <div class="page-hero">
+        <h1>Boğaz Ateşi</h1>
+    </div>
+
+    <div class="content">
+        <p class="desc">
+            İstanbul'un kalbinde, gece ışıklarının altında nefes kesen bir sürüşe hazır mısın? 
+            Trafiğin azaldığı saatlerde, köprü manzarası eşliğinde adrenalini hisset. 
+            Bu tur sadece cesurlar için.
+        </p>
+
+        <div class="features">
+            <div class="feat-box"><i class="fas fa-stopwatch"></i><br>1 Saat</div>
+            <div class="feat-box"><i class="fas fa-tachometer-alt"></i><br>Hızlı Tempo</div>
+            <div class="feat-box"><i class="fas fa-moon"></i><br>Gece Sürüşü</div>
+        </div>
+
+        <a href="https://wa.me/905551234567?text=Merhaba,%20Boğaz%20Turu%20için%20rezervasyon%20yapmak%20istiyorum." target="_blank" class="whatsapp-btn">
+            <i class="fab fa-whatsapp"></i> WhatsApp ile Rezervasyon
+        </a>
+    </div>
+</body>
+</html>
