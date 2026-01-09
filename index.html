@@ -1,0 +1,419 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Adrenalin Motosiklet Turları - İstanbul</title>
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500;700&family=Oswald:wght@400;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    
+    <style>
+        /* --- متغيرات الألوان والتصميم --- */
+        :root {
+            --primary: #ff5100;      /* برتقالي حيوي */
+            --primary-dark: #cc4100;
+            --secondary: #25D366;    /* أخضر واتساب */
+            --dark: #111111;
+            --light: #f8f9fa;
+            --gray: #6c757d;
+            --shadow: 0 10px 30px rgba(0,0,0,0.1);
+        }
+
+        /* --- إعدادات عامة --- */
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        
+        html { scroll-behavior: smooth; } /* تمرير ناعم */
+
+        body {
+            font-family: 'Roboto', sans-serif;
+            background-color: var(--light);
+            color: #333;
+            line-height: 1.6;
+            overflow-x: hidden;
+        }
+
+        /* --- Header (Glassmorphism Effect) --- */
+        header {
+            background: rgba(0, 0, 0, 0.8); /* خلفية نصف شفافة */
+            backdrop-filter: blur(10px);    /* تأثير الضباب */
+            padding: 1rem 5%;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+            border-bottom: 1px solid rgba(255,255,255,0.1);
+            transition: all 0.3s ease;
+        }
+
+        .logo {
+            font-family: 'Oswald', sans-serif;
+            font-size: 1.8rem;
+            color: var(--primary);
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            font-weight: 700;
+        }
+
+        nav ul { list-style: none; display: flex; gap: 25px; }
+        
+        nav a {
+            color: #fff;
+            text-decoration: none;
+            font-weight: 500;
+            font-size: 0.95rem;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            position: relative;
+            transition: 0.3s;
+        }
+
+        /* تأثير الخط تحت الروابط */
+        nav a::after {
+            content: ''; display: block; width: 0; height: 2px;
+            background: var(--primary); transition: width 0.3s;
+            margin-top: 5px;
+        }
+        nav a:hover::after { width: 100%; }
+        nav a:hover { color: var(--primary); }
+
+        /* --- Hero Section --- */
+        .hero {
+            position: relative;
+            height: 100vh;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            text-align: center;
+            color: white;
+            overflow: hidden;
+        }
+
+        .hero video {
+            position: absolute; top: 0; left: 0; width: 100%; height: 100%;
+            object-fit: cover; z-index: -1;
+        }
+
+        .hero-overlay {
+            position: absolute; top: 0; left: 0; width: 100%; height: 100%;
+            background: linear-gradient(to bottom, rgba(0,0,0,0.3), rgba(0,0,0,0.8)); /* تدرج لوني */
+            z-index: 0;
+        }
+
+        .hero-content {
+            position: relative; z-index: 1; padding: 0 20px;
+            animation: fadeInUp 1.5s ease; /* أنيميشن الظهور */
+        }
+
+        .hero h1 {
+            font-family: 'Oswald', sans-serif;
+            font-size: 4.5rem;
+            margin-bottom: 1rem;
+            text-transform: uppercase;
+            line-height: 1.1;
+            text-shadow: 2px 2px 20px rgba(0,0,0,0.5);
+        }
+
+        .hero p {
+            font-size: 1.4rem; margin-bottom: 2.5rem; max-width: 700px;
+            margin-left: auto; margin-right: auto; opacity: 0.9;
+        }
+
+        /* زر الدعوة لاتخاذ إجراء (CTA) */
+        .btn-main {
+            padding: 15px 40px;
+            background: var(--primary);
+            color: white;
+            text-decoration: none;
+            border-radius: 50px;
+            font-weight: bold;
+            font-size: 1.1rem;
+            transition: all 0.3s ease;
+            box-shadow: 0 5px 15px rgba(255, 81, 0, 0.4);
+            display: inline-block;
+        }
+
+        .btn-main:hover {
+            background: var(--primary-dark);
+            transform: translateY(-3px);
+            box-shadow: 0 8px 20px rgba(255, 81, 0, 0.6);
+        }
+
+        /* --- Tours Section --- */
+        .section { padding: 5rem 10%; }
+        
+        .section-title {
+            text-align: center;
+            font-family: 'Oswald', sans-serif;
+            font-size: 3rem;
+            margin-bottom: 1rem;
+            color: var(--dark);
+            position: relative;
+            display: inline-block;
+            left: 50%; transform: translateX(-50%);
+        }
+        
+        .section-title::after {
+            content: ''; display: block; width: 60px; height: 4px;
+            background: var(--primary); margin: 10px auto 0;
+        }
+
+        .section-subtitle {
+            text-align: center; color: var(--gray); margin-bottom: 4rem;
+        }
+
+        .tours-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+            gap: 2.5rem;
+        }
+
+        /* تصميم الكارت الاحترافي */
+        .tour-card {
+            background: white;
+            border-radius: 15px;
+            overflow: hidden;
+            box-shadow: var(--shadow);
+            transition: all 0.4s ease;
+            position: relative;
+            opacity: 0; /* مخفي للأنيميشن */
+            transform: translateY(30px); /* للإزاحة للأسفل */
+        }
+
+        .tour-card.visible {
+            opacity: 1; transform: translateY(0);
+        }
+
+        .tour-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 15px 35px rgba(0,0,0,0.15);
+        }
+
+        .img-wrapper { overflow: hidden; height: 220px; position: relative; }
+        
+        .tour-img {
+            width: 100%; height: 100%; object-fit: cover;
+            transition: transform 0.5s ease;
+        }
+
+        .tour-card:hover .tour-img { transform: scale(1.1); /* تكبير الصورة عند الماوس */ }
+
+        /* شارة السعر */
+        .price-badge {
+            position: absolute; top: 15px; right: 15px;
+            background: rgba(0,0,0,0.8); color: white;
+            padding: 5px 15px; border-radius: 20px;
+            font-weight: bold; font-family: 'Oswald';
+            backdrop-filter: blur(5px);
+        }
+
+        .tour-info { padding: 1.5rem; }
+
+        .tour-title { font-size: 1.6rem; font-weight: 700; margin-bottom: 0.8rem; color: var(--dark); }
+
+        .tour-details {
+            display: flex; gap: 15px; margin-bottom: 1.2rem;
+            color: var(--gray); font-size: 0.9rem;
+        }
+        .tour-details span i { color: var(--primary); margin-right: 5px; }
+
+        .tour-desc { color: #555; font-size: 0.95rem; margin-bottom: 1.5rem; min-height: 50px; }
+
+        /* أزرار الكروت */
+        .btn-link {
+            display: block; width: 100%; text-align: center;
+            padding: 10px; border: 2px solid; border-radius: 8px;
+            text-decoration: none; font-weight: 600; margin-bottom: 10px;
+            transition: 0.3s;
+        }
+        
+        .btn-red { border-color: #d32f2f; color: #d32f2f; }
+        .btn-red:hover { background: #d32f2f; color: white; }
+
+        .btn-green { border-color: var(--primary-dark); color: var(--primary-dark); }
+        .btn-green:hover { background: var(--primary-dark); color: white; }
+
+        .whatsapp-btn {
+            width: 100%; padding: 12px; border: none;
+            background: var(--secondary); color: white;
+            border-radius: 8px; font-weight: 600; cursor: pointer;
+            font-size: 1rem; display: flex; justify-content: center; align-items: center; gap: 8px;
+            transition: 0.3s;
+        }
+        .whatsapp-btn:hover { background: #1ebc57; box-shadow: 0 5px 15px rgba(37, 211, 102, 0.3); }
+
+        /* --- Footer --- */
+        footer {
+            background-color: var(--dark); color: white;
+            text-align: center; padding: 3rem 1rem;
+        }
+        .social-icons { margin: 20px 0; }
+        .social-icons a {
+            color: white; font-size: 1.5rem; margin: 0 10px; transition: 0.3s;
+        }
+        .social-icons a:hover { color: var(--primary); }
+
+        /* --- Keyframes Animations --- */
+        @keyframes fadeInUp {
+            from { opacity: 0; transform: translateY(40px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        /* --- Responsive Design --- */
+        @media (max-width: 768px) {
+            header { flex-direction: column; padding: 1rem; }
+            nav ul { margin-top: 15px; gap: 15px; flex-wrap: wrap; justify-content: center; }
+            nav a { font-size: 0.85rem; }
+            
+            .hero h1 { font-size: 2.8rem; }
+            .hero p { font-size: 1.1rem; }
+            
+            .section { padding: 3rem 5%; }
+            .section-title { font-size: 2.2rem; }
+            
+            .tours-grid { grid-template-columns: 1fr; }
+        }
+    </style>
+</head>
+<body>
+
+    <header>
+        <div class="logo">Adrenalin<span style="color:var(--primary)">Moto</span></div>
+        <nav>
+            <ul>
+                <li><a href="#hero">Anasayfa</a></li>
+                <li><a href="#tours">Turlar</a></li>
+                <li><a href="#gallery">Galeri</a></li>
+                <li><a href="#contact">İletişim</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <section class="hero" id="hero">
+        <video autoplay muted loop playsinline>
+            <source src="Video Project.mp4" type="video/mp4">
+            <source src="https://joy1.videvo.net/videvo_files/converted/2018_07/large_mp4/180607_A_064.mp4" type="video/mp4">
+        </video>
+
+        <div class="hero-overlay"></div>
+
+        <div class="hero-content">
+            <h1>Sınırları Zorla</h1>
+            <p>İstanbul'un gürültüsünden uzaklaş. Boğaz'ın rüzgarını ve ormanın sessizliğini hisset.</p>
+            <a href="#tours" class="btn-main">Macerayı Başlat</a>
+        </div>
+    </section>
+
+    <section class="section" id="tours">
+        <h2 class="section-title">Popüler Turlarımız</h2>
+        <p class="section-subtitle">Sizin için hazırladığımız özel rotaları keşfedin</p>
+        
+        <div class="tours-grid">
+            
+            <div class="tour-card">
+                <div class="img-wrapper">
+                    <img src="https://i0.wp.com/rodinistanbul.com/wp-content/uploads/2023/04/copycopy.jpg?w=959&ssl=1" alt="Boğaz Turu" class="tour-img">
+                    <span class="price-badge">1500 TL</span>
+                </div>
+                <div class="tour-info">
+                    <h3 class="tour-title">Boğaz Turu</h3>
+                    <div class="tour-details">
+                        <span><i class="fas fa-clock"></i> 1 Saat</span>
+                        <span><i class="fas fa-route"></i> Sahil & Köprü</span>
+                    </div>
+                    <p class="tour-desc">İstanbul Boğazı'nın eşsiz gece manzarası eşliğinde unutulmaz bir sürüş deneyimi.</p>
+                    
+                    <a href="bogaz.html" class="btn-link btn-red">DETAYLARI İNCELE <i class="fas fa-arrow-right"></i></a>
+                    <button class="whatsapp-btn" onclick="bookTour('Boğaz Turu')">
+                        <i class="fab fa-whatsapp"></i> Rezervasyon Yap
+                    </button>
+                </div>
+            </div>
+
+            <div class="tour-card">
+                <div class="img-wrapper">
+                    <img src="https://move2turkey.com/wp-content/uploads/2020/12/Belgrade-forest-in-Istanbul-All-you-need-to-know1.jpg" alt="Orman Turu" class="tour-img">
+                    <span class="price-badge">1200 TL</span>
+                </div>
+                <div class="tour-info">
+                    <h3 class="tour-title">Orman Turu (Kısa)</h3>
+                    <div class="tour-details">
+                        <span><i class="fas fa-clock"></i> 1 Saat</span>
+                        <span><i class="fas fa-tree"></i> Doğa Rotası</span>
+                    </div>
+                    <p class="tour-desc">Doğa ile iç içe, yeni başlayanlar için ideal, adrenalin dolu kısa bir kaçamak.</p>
+                    
+                    <a href="orman.html" class="btn-link btn-green">DETAYLARI İNCELE <i class="fas fa-arrow-right"></i></a>
+                    <button class="whatsapp-btn" onclick="bookTour('Orman Turu - 1 Saat')">
+                        <i class="fab fa-whatsapp"></i> Rezervasyon Yap
+                    </button>
+                </div>
+            </div>
+
+            <div class="tour-card">
+                <div class="img-wrapper">
+                    <img src="https://www.sfari.com/wp-content/uploads/2023/08/%D8%A7%D9%81%D8%B6%D9%84-%D8%A7%D9%86%D8%B4%D8%B7%D8%A9-%D9%81%D9%8A-%D8%AD%D8%AF%D9%8A%D9%82%D8%A9-%D8%A7%D8%AA%D8%A7%D8%AA%D9%88%D8%B1%D9%83.jpg" alt="Orman Turu Uzun" class="tour-img">
+                    <span class="price-badge">2000 TL</span>
+                </div>
+                <div class="tour-info">
+                    <h3 class="tour-title">Orman Turu (Macera)</h3>
+                    <div class="tour-details">
+                        <span><i class="fas fa-clock"></i> 2 Saat</span>
+                        <span><i class="fas fa-mountain"></i> Off-Road</span>
+                    </div>
+                    <p class="tour-desc">Daha derinlere inin, çamurlu yollar ve zorlu parkurlarla macerayı ikiye katlayın.</p>
+                    
+                    <a href="orman.html" class="btn-link btn-green">DETAYLARI İNCELE <i class="fas fa-arrow-right"></i></a>
+                    <button class="whatsapp-btn" onclick="bookTour('Orman Turu - 2 Saat')">
+                        <i class="fab fa-whatsapp"></i> Rezervasyon Yap
+                    </button>
+                </div>
+            </div>
+
+        </div>
+    </section>
+
+    <footer id="contact">
+        <h3>Adrenalin Motosiklet Turları</h3>
+        <div class="social-icons">
+            <a href="#"><i class="fab fa-instagram"></i></a>
+            <a href="#"><i class="fab fa-facebook"></i></a>
+            <a href="#"><i class="fab fa-twitter"></i></a>
+        </div>
+        <p>İstanbul, Türkiye</p>
+        <p style="font-size: 0.8rem; color: #888; margin-top: 10px;">&copy; 2025 Tüm Hakları Saklıdır.</p>
+    </footer>
+
+    <script>
+        // 1. وظيفة الواتساب
+        function bookTour(tourName) {
+            const phoneNumber = "905527186411"; 
+            const message = `Merhaba, ${tourName} hakkında bilgi almak ve rezervasyon yapmak istiyorum.`;
+            const encodedMessage = encodeURIComponent(message);
+            const whatsappUrl = `https://wa.me/${phoneNumber}?text=${encodedMessage}`;
+            window.open(whatsappUrl, '_blank');
+        }
+
+        // 2. كود "Scroll Reveal" (ظهور البطاقات عند التمرير)
+        // هذا الكود يراقب متى تظهر العناصر في الشاشة ويضيف لها كلاس 'visible'
+        document.addEventListener('DOMContentLoaded', function() {
+            const cards = document.querySelectorAll('.tour-card');
+            
+            const observer = new IntersectionObserver((entries) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        entry.target.classList.add('visible');
+                    }
+                });
+            }, { threshold: 0.1 }); // يبدأ الأنيميشن عند ظهور 10% من العنصر
+
+            cards.forEach(card => {
+                observer.observe(card);
+            });
+        });
+    </script>
+
+</body>
+</html>
